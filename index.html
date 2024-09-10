@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Google - Search</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1 class="title">MC for Google Chrome:</h1>
+
+<br>
+
+<button class="run" onclick="eval(document.getElementById('code').value)">Launch 1.5.2</button>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+font-family: "Roboto";
+}
+
+.title {
+font-size: 60px;
+}
+
+body {
+background-color: #2d2f31;
+color: darkgrey;
+-webkit-text-stroke: 0.01px lightgrey;
+}
+
+.run {
+height: 40px;
+width: 80px;
+font-size: 30px;
+color: darkgrey;
+-webkit-text-stroke: 1px lightgrey;
+cursor: pointer;
+margin: 10px;
+background: transparent;
+border: 2px solid #656c6f;
+border-radius: 2.5px;
+}
+</style>
+
+<script>
+    var urlObj = new window.URL(window.location.href);
+    var url = "https://algebra-calculator.pages.dev/mc/";
+
+    if (url) {
+        var win;
+
+        document.querySelector('button').onclick = function () {
+            if (win) {
+                win.focus();
+            } else {
+                win = window.open();
+                win.document.body.style.margin = '0';
+                win.document.body.style.height = '100vh';
+                var iframe = win.document.createElement('iframe');
+                iframe.style.border = 'none';
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.margin = '0';
+                iframe.src = url;
+                win.document.body.appendChild(iframe);
+                window.location.replace("https://google.com")
+
+
+                var interval = setInterval(function () {
+                    if (win.closed) {
+                        clearInterval(interval);
+                        win = undefined;
+
+                    }
+                }, 500);
+
+
+            }
+        };
+    }
+</script>
+
+</body>
+</html>
